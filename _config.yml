@@ -84,7 +84,7 @@ baseurl: "" # the subpath of your site, e.g. /blog
 url: https://meowypouncer.github.io # the base hostname & protocol for your site, e.g. http://example.com
 twitter_username: jyke_fredzo
 github_username:  meowypouncer
-medium_username: https://t.me/surelyou
+medium_username: t.me/surelyou
 
 # Build settings
 # theme: phantom
