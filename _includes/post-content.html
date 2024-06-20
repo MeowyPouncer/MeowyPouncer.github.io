@@ -4,7 +4,16 @@
   <p class="excerpt">{{ post.lead_text }}</p>
 
   {% if post.project_link != empty %}
-  <a href="{{ post.project_link }}" class="project-link"><button class="btn btn-default btn-lg"><i class="fa-solid fa-{{post.button_icon}} fa-lg"></i>{{post.button_text}}</button></a>
+  <a href="{{ post.project_link }}" class="project-link">
+    <button class="btn btn-default btn-lg">
+      {% if post.button_icon == 'github' %}
+      <i class="fa-brands fa-{{ post.button_icon }} fa-lg"></i>
+      {% else %}
+      <i class="fa-solid fa-{{ post.button_icon }} fa-lg"></i>
+      {% endif %}
+      {{ post.button_text }}
+    </button>
+  </a>
   {% endif %}
 
   {% if post.tags != empty %}

@@ -73,6 +73,8 @@ footer_text: '© 2024 Ivan Smirnov'
 admin_name: 'Ivan Smirnov'
 google_analytics: "UA-9999999-99" # Update with your own tracking ID
 enable_contact: false
+section_title: Последние работы
+section_subtitle: Мой опыт распространяется довольно широко, но в этих проектах он был особенно интересным
 
 #### Phantom Navigation menu
 enable_nav: false
