@@ -1,6 +1,6 @@
 ---
 layout: inner
-position: left
+position: right
 title: 'Telegram-bot'
 date: 2024-03-05 12:00:00
 categories: development

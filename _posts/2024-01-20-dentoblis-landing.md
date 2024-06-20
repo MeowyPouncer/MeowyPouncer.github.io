@@ -1,6 +1,6 @@
 ---
 layout: inner
-position: left
+position: right
 title: '«ДентоБЛИС»'
 date: 2024-01-20 21:15:00
 categories: development design
@@ -9,5 +9,5 @@ featured_image: '/img/posts/01_dentoblis_site-preview.png'
 project_link: 'https://dentoblis.ru/'
 button_icon: 'link'
 button_text: 'Перейти на сайт'
-lead_text: "Вёрстка лендинга БАДа для здоровья полости рта"
+lead_text: "Разработка лендинга БАДа"
 ---

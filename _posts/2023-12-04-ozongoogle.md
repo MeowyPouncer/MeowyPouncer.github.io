@@ -1,7 +1,7 @@
 ---
 layout: inner
-position: right
-title: 'Ozon и Google Sheets API'
+position: left
+title: 'Ozon/Google API'
 date: 2024-03-05 12:00:00
 categories: development
 tags: Python API ETL

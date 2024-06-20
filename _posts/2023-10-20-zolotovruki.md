@@ -1,6 +1,6 @@
 ---
 layout: inner
-position: right
+position: left
 title: '«Золото в руки»'
 date: 2023-10-20 12:00:00
 categories: development
