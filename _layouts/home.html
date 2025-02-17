@@ -7,27 +7,68 @@
         <div class="row">
             <div class="col-md-12">
 
-                {% if site.section_title != '' %}
-                <h2 class="section-title text-center">{{ site.section_title }}</h2>
+                {%- comment -%}
+                1. Определяем, какой язык у текущей страницы (en или ru).
+                Если в русской версии прописано во фронтматтере `lang: "ru"`,
+                то page.lang == "ru". Иначе считаем, что это EN.
+                {%- endcomment -%}
+                {% if page.lang == "ru" %}
+                {% assign the_section_title = site.section_title_ru %}
+                {% assign the_section_subtitle = site.section_subtitle_ru %}
+                {% else %}
+                {% assign the_section_title = site.section_title_en %}
+                {% assign the_section_subtitle = site.section_subtitle_en %}
                 {% endif %}
-                {% if site.section_subtitle != '' %}
-                <p class="section-subtitle text-center">{{ site.section_subtitle }}</p>
+
+                {%- comment -%}
+                2. Выводим заголовок и подзаголовок, если они не пустые.
+                {%- endcomment -%}
+                {% if the_section_title %}
+                <h2 class="section-title text-center">{{ the_section_title }}</h2>
+                {% endif %}
+                {% if the_section_subtitle %}
+                <p class="section-subtitle text-center">{{ the_section_subtitle }}</p>
                 {% endif %}
 
                 <div class="break"></div>
 
+                {%- comment -%}
+                3. (Опционально) Если хотим, чтобы в английской версии показывались
+                ТОЛЬКО посты из `_posts/en/`, а в русской — из `_posts/ru/`,
+                добавим условие в цикле:
+                {%- endcomment -%}
                 {% for post in site.posts %}
+                {% if page.lang == "ru" %}
+                {% if post.path contains '/ru/' %}
                 <div class="wow fadeIn">
                     {% if post.position == "left" %}
                     {% include content-left.html %}
                     {% endif %}
-
                     {% if post.position == "right" %}
                     {% include content-right.html %}
                     {% endif %}
                 </div>
+                {% endif %}
+                {% else %}
+                {% if post.path contains '/en/' %}
+                <div class="wow fadeIn">
+                    {% if post.position == "left" %}
+                    {% include content-left.html %}
+                    {% endif %}
+                    {% if post.position == "right" %}
+                    {% include content-right.html %}
+                    {% endif %}
+                </div>
+                {% endif %}
+                {% endif %}
                 {% endfor %}
 
+                {%- comment -%}
+                4. Пагинация (pagination.html) остаётся без изменений.
+                Помните, что стандартный плагин jekyll-paginate учитывает ВСЕ посты,
+                поэтому в одной из языковых версий могут быть "пустые" страницы,
+                если постов много на другом языке.
+                {%- endcomment -%}
                 {% include pagination.html %}
 
             </div>

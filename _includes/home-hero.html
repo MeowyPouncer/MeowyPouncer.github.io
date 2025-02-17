@@ -1,21 +1,36 @@
 <div class="container">
-
     <div class="row">
-
         <div class="col-md-12">
 
             <div class="hero-container">
-
                 <div class="hero-content">
 
-                    {% if site.title != '' %}
-                    <h1 class="text-center">{{site.title}}</h1>
+                    {%- comment -%}
+                    1. Определяем, какие переменные использовать в зависимости от языка.
+                    Если в русских файлах стоит `lang: "ru"`, то page.lang == "ru".
+                    {%- endcomment -%}
+                    {% if page.lang == "ru" %}
+                    {% assign the_title = site.title_ru %}
+                    {% assign the_description = site.description_ru %}
+                    {% else %}
+                    {% assign the_title = site.title_en %}
+                    {% assign the_description = site.description_en %}
                     {% endif %}
 
-                    {% if site.description != '' or site.enable_contact == true %}
+                    {%- comment -%}
+                    2. Выводим заголовок (title), если не пустой.
+                    {%- endcomment -%}
+                    {% if the_title %}
+                    <h1 class="text-center">{{ the_title }}</h1>
+                    {% endif %}
+
+                    {%- comment -%}
+                    3. Выводим описание (description) и, если enable_contact == true, блок контактов.
+                    {%- endcomment -%}
+                    {% if the_description or site.enable_contact %}
                     <p class="text-center">
-                        {% if site.description != '' %}
-                        {{site.description}}
+                        {% if the_description %}
+                        {{ the_description }}
                         {% endif %}
 
                         {% if site.enable_contact == true %}
@@ -26,29 +41,62 @@
                     {% endif %}
 
                     <div class="hero-buttons">
-
-                        {% if site.twitter_username != '' %}
+                        {%- comment -%}
+                        4. Пример локализации текста кнопок (опционально).
+                        {%- endcomment -%}
+                        {% if site.twitter_username %}
                         <a href="https://twitter.com/{{ site.twitter_username }}">
-                            <button class="btn btn-default btn-lg"><i class="fa-brands fa-x-twitter"></i>Twitter
-                            </button>
-                        </a>
-                        {% endif %}
-                        {% if site.github_username != '' %}
-                        <a href="https://github.com/{{ site.github_username }}">
-                            <button class="btn btn-default btn-lg"><i class="fa-brands fa-github"></i>Github</button>
-                        </a>
-                        {% endif %}
-                        {% if site.medium_username != '' %}
-                        <a href="https://{{ site.medium_username }}">
-                            <button class="btn btn-default btn-lg"><i class="fa-brands fa-telegram"></i>Telegram
+                            <button class="btn btn-default btn-lg">
+                                <i class="fa-brands fa-x-twitter"></i>
+                                {% if page.lang == "ru" %}
+                                Твиттер
+                                {% else %}
+                                Twitter
+                                {% endif %}
                             </button>
                         </a>
                         {% endif %}
 
+                        {% if site.github_username %}
+                        <a href="https://github.com/{{ site.github_username }}">
+                            <button class="btn btn-default btn-lg">
+                                <i class="fa-brands fa-github"></i>
+                                {% if page.lang == "ru" %}
+                                Гитхаб
+                                {% else %}
+                                Github
+                                {% endif %}
+                            </button>
+                        </a>
+                        {% endif %}
+
+                        {% if site.medium_username %}
+                        <a href="https://{{ site.medium_username }}">
+                            <button class="btn btn-default btn-lg">
+                                <i class="fa-brands fa-telegram"></i>
+                                {% if page.lang == "ru" %}
+                                Телеграм
+                                {% else %}
+                                Telegram
+                                {% endif %}
+                            </button>
+                        </a>
+                        {% endif %}
+                        {% if site.bluesky_username %}
+                        <a href="https://bsky.app/profile/{{ site.bluesky_username }}">
+                            <button class="btn btn-default btn-lg">
+                                <i class="fa-brands fa-bluesky"></i>
+                                {% if page.lang == "ru" %}
+                                Bluesky
+                                {% else %}
+                                Bluesky
+                                {% endif %}
+                            </button>
+                        </a>
+                        {% endif %}
                     </div>
 
                 </div>
-
             </div>
 
             <a class="section-jump text-center" href="#portfolio">
@@ -56,7 +104,5 @@
             </a>
 
         </div>
-
     </div>
-
 </div>
